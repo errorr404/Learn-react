@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 /*
 // JSX - JavaScript XML
@@ -58,57 +58,130 @@ const userReturn = (
 const appRoot = document.getElementById('app');
 ReactDOM.render(userReturn,appRoot);  // here it takes the (element which we want to show, and the place we want to show)
 */
-var count = 0;
-var addOne = function addOne() {
-  count += 1;
-  //document.getElementById('show').textContent = `count: ${count}`;
+/*
+  let count = 0;
+  const addOne = ()=>{
+    count+=1;
+    //document.getElementById('show').textContent = `count: ${count}`;
+    renderCounterApp();
+  };
+  const minusOne = ()=>{
+    count-=1;
+      //document.getElementById('show').textContent = `count: ${count}`;
+      renderCounterApp();
+  };
+  const reset = ()=>{
+    count=0;
+    //  document.getElementById('show').textContent = `count: ${count}`;
+    renderCounterApp();
+  };
+
+
+
+  // chalange
+  // make button "-1" setup minusOne button and register -log"minusOne"
+  // make reset button "reset" - setup reset function -log"reset"
+
+  const appRoot = document.getElementById('app');
+
+  const renderCounterApp = ()=>{
+    const templet =(
+      <div>
+        <h1 id="show">count: {count}</h1>
+        <button onClick={addOne}>+1</button>
+        <button onClick={minusOne}>-1</button>
+        <button onClick={reset}>reset</button>
+      </div>
+    );
+
+      ReactDOM.render(templet,appRoot);
+  };
+
   renderCounterApp();
-};
-var minusOne = function minusOne() {
-  count -= 1;
-  //document.getElementById('show').textContent = `count: ${count}`;
-  renderCounterApp();
-};
-var reset = function reset() {
-  count = 0;
-  //  document.getElementById('show').textContent = `count: ${count}`;
-  renderCounterApp();
+
+  */
+var app = {
+  title: 'Indecision App',
+  subtitle: 'Put your life in the hands of a computer',
+  options: []
 };
 
-// chalange
-// make button "-1" setup minusOne button and register -log"minusOne"
-// make reset button "reset" - setup reset function -log"reset"
+var onFormSubmit = function onFormSubmit(e) {
+  //console.log('form-submitted');
+  var option = e.target.elements.option.value;
+
+  if (option) {
+    app.options.push(_option);
+    var _option = e.target.elements.option.value = ' ';
+    renderFunction();
+  }
+
+  e.preventDefault();
+};
+
+var removeAll = function removeAll() {
+  app.options.length = 0;
+  renderFunction();
+};
 
 var appRoot = document.getElementById('app');
 
-var renderCounterApp = function renderCounterApp() {
+// create a render function
+// call it rignt away
+// call it after options array needed //
+var renderFunction = function renderFunction() {
   var templet = React.createElement(
-    "div",
+    'div',
     null,
     React.createElement(
-      "h1",
-      { id: "show" },
-      "count: ",
-      count
+      'h1',
+      null,
+      'Indecision_app'
     ),
     React.createElement(
-      "button",
-      { onClick: addOne },
-      "+1"
+      'p',
+      null,
+      'this is a cool app'
     ),
     React.createElement(
-      "button",
-      { onClick: minusOne },
-      "-1"
+      'p',
+      null,
+      app.options.length
     ),
     React.createElement(
-      "button",
-      { onClick: reset },
-      "reset"
+      'button',
+      { onClick: removeAll },
+      'Remove All'
+    ),
+    React.createElement(
+      'ol',
+      null,
+      React.createElement(
+        'li',
+        null,
+        'Item One'
+      ),
+      React.createElement(
+        'li',
+        null,
+        'Item Two'
+      )
+    ),
+    React.createElement(
+      'form',
+      { onSubmit: onFormSubmit },
+      React.createElement('input', { type: 'text', placeholder: 'enter text', name: 'option' }),
+      React.createElement(
+        'button',
+        null,
+        'Add Option'
+      )
     )
   );
 
   ReactDOM.render(templet, appRoot);
 };
+renderFunction();
 
-renderCounterApp();
+// create remove all button above list
+// on click -> wipe the array -> rerender

@@ -56,6 +56,7 @@ const userReturn = (
 const appRoot = document.getElementById('app');
 ReactDOM.render(userReturn,appRoot);  // here it takes the (element which we want to show, and the place we want to show)
 */
+/*
   let count = 0;
   const addOne = ()=>{
     count+=1;
@@ -95,3 +96,61 @@ ReactDOM.render(userReturn,appRoot);  // here it takes the (element which we wan
   };
 
   renderCounterApp();
+
+  */
+  const app = {
+  title: 'Indecision App',
+  subtitle: 'Put your life in the hands of a computer',
+  options: []
+  };
+
+  const onFormSubmit = (e)=>{
+   //console.log('form-submitted');
+   const option = e.target.elements.option.value;
+
+   if(option) {
+     app.options.push(option);
+     const option = e.target.elements.option.value = ' ';
+     renderFunction();
+   }
+
+   e.preventDefault();
+  };
+
+  const removeAll = ()=>{
+  app.options.length =0;
+  renderFunction();
+  };
+
+
+
+  const appRoot = document.getElementById('app');
+
+
+  // create a render function
+  // call it rignt away
+  // call it after options array needed //
+  const renderFunction = ()=>{
+    const templet = (
+      <div>
+        <h1>Indecision_app</h1>
+        <p>this is a cool app</p>
+        <p>{app.options.length}</p>
+        <button onClick={removeAll}>Remove All</button>
+        <ol>
+          <li>Item One</li>
+          <li>Item Two</li>
+        </ol>
+        <form onSubmit={onFormSubmit}>
+          <input type="text" placeholder="enter text" name="option"></input>
+          <button>Add Option</button>
+        </form>
+      </div>
+    );
+
+      ReactDOM.render(templet,appRoot);
+  };
+  renderFunction();
+
+  // create remove all button above list
+  // on click -> wipe the array -> rerender
