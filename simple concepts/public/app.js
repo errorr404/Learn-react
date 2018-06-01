@@ -109,10 +109,11 @@ var app = {
 var onFormSubmit = function onFormSubmit(e) {
   //console.log('form-submitted');
   var option = e.target.elements.option.value;
+  // console.log(option);
 
   if (option) {
-    app.options.push(_option);
-    var _option = e.target.elements.option.value = ' ';
+    app.options.push(option);
+    // const option = e.target.elements.option.value = "";
     renderFunction();
   }
 
@@ -123,12 +124,15 @@ var removeAll = function removeAll() {
   app.options.length = 0;
   renderFunction();
 };
+var number = [10, 20, 30];
 
 var appRoot = document.getElementById('app');
 
 // create a render function
 // call it rignt away
 // call it after options array needed //
+
+
 var renderFunction = function renderFunction() {
   var templet = React.createElement(
     'div',
@@ -156,16 +160,13 @@ var renderFunction = function renderFunction() {
     React.createElement(
       'ol',
       null,
-      React.createElement(
-        'li',
-        null,
-        'Item One'
-      ),
-      React.createElement(
-        'li',
-        null,
-        'Item Two'
-      )
+      app.options.map(function (option) {
+        return React.createElement(
+          'li',
+          { key: option },
+          option
+        );
+      })
     ),
     React.createElement(
       'form',

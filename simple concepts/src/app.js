@@ -107,10 +107,11 @@ ReactDOM.render(userReturn,appRoot);  // here it takes the (element which we wan
   const onFormSubmit = (e)=>{
    //console.log('form-submitted');
    const option = e.target.elements.option.value;
+   // console.log(option);
 
    if(option) {
      app.options.push(option);
-     const option = e.target.elements.option.value = ' ';
+    // const option = e.target.elements.option.value = "";
      renderFunction();
    }
 
@@ -121,7 +122,7 @@ ReactDOM.render(userReturn,appRoot);  // here it takes the (element which we wan
   app.options.length =0;
   renderFunction();
   };
-
+const number = [10,20,30];
 
 
   const appRoot = document.getElementById('app');
@@ -130,18 +131,30 @@ ReactDOM.render(userReturn,appRoot);  // here it takes the (element which we wan
   // create a render function
   // call it rignt away
   // call it after options array needed //
-  const renderFunction = ()=>{
+
+
+
+    const renderFunction = ()=>{
     const templet = (
       <div>
         <h1>Indecision_app</h1>
         <p>this is a cool app</p>
         <p>{app.options.length}</p>
         <button onClick={removeAll}>Remove All</button>
+        {
+          // number.map((num)=>{
+          //   return <p key="num">Number:{num}</p>;
+          // })
+        }
         <ol>
-          <li>Item One</li>
-          <li>Item Two</li>
+          {
+            app.options.map((option)=>{
+              return <li key={option}>{option}</li>;
+            })
+          }
+
         </ol>
-        <form onSubmit={onFormSubmit}>
+        <form onSubmit={onFormSubmit} >
           <input type="text" placeholder="enter text" name="option"></input>
           <button>Add Option</button>
         </form>
