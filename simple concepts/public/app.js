@@ -25,7 +25,7 @@ var show = function show() {
     React.createElement(
       'p',
       { hidden: i % 2 === 0 },
-      'Hey, These are some details you can now see!'
+      'Hey,These are some details you can now see!'
     )
   );
 
