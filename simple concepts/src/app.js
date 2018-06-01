@@ -1,3 +1,4 @@
+/*
 // JSX - JavaScript XML
 
 const templet = (
@@ -54,3 +55,43 @@ const userReturn = (
 );
 const appRoot = document.getElementById('app');
 ReactDOM.render(userReturn,appRoot);  // here it takes the (element which we want to show, and the place we want to show)
+*/
+  let count = 0;
+  const addOne = ()=>{
+    count+=1;
+    //document.getElementById('show').textContent = `count: ${count}`;
+    renderCounterApp();
+  };
+  const minusOne = ()=>{
+    count-=1;
+      //document.getElementById('show').textContent = `count: ${count}`;
+      renderCounterApp();
+  };
+  const reset = ()=>{
+    count=0;
+    //  document.getElementById('show').textContent = `count: ${count}`;
+    renderCounterApp();
+  };
+
+
+
+  // chalange
+  // make button "-1" setup minusOne button and register -log"minusOne"
+  // make reset button "reset" - setup reset function -log"reset"
+
+  const appRoot = document.getElementById('app');
+
+  const renderCounterApp = ()=>{
+    const templet =(
+      <div>
+        <h1 id="show">count: {count}</h1>
+        <button onClick={addOne}>+1</button>
+        <button onClick={minusOne}>-1</button>
+        <button onClick={reset}>reset</button>
+      </div>
+    );
+
+      ReactDOM.render(templet,appRoot);
+  };
+
+  renderCounterApp();
