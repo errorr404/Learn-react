@@ -111,7 +111,7 @@ ReactDOM.render(userReturn,appRoot);  // here it takes the (element which we wan
 
    if(option) {
      app.options.push(option);
-    // const option = e.target.elements.option.value = "";
+    e.target.elements.option.value =" ";
      renderFunction();
    }
 
@@ -121,6 +121,12 @@ ReactDOM.render(userReturn,appRoot);  // here it takes the (element which we wan
   const removeAll = ()=>{
   app.options.length =0;
   renderFunction();
+  };
+
+  const onMakeDecision = ()=>{
+    const randnomNum = Math.floor(Math.random()*app.options.length);
+    const option = app.options[randnomNum];
+    alert(option);
   };
 const number = [10,20,30];
 
@@ -137,16 +143,18 @@ const number = [10,20,30];
     const renderFunction = ()=>{
     const templet = (
       <div>
-        <h1>Indecision_app</h1>
-        <p>this is a cool app</p>
-        <p>{app.options.length}</p>
-        <button onClick={removeAll}>Remove All</button>
-        {
-          // number.map((num)=>{
-          //   return <p key="num">Number:{num}</p>;
-          // })
-        }
-        <ol>
+          <h1>{app.title}</h1>
+          {app.subtitle && <p>{app.subtitle}</p>}
+          <p>{(app.options.length > 0) ? 'Here are your options':'No options'}</p>
+          {/* <p>{app.options.length}</p> */}
+          <button disabled={app.options.length===0}onClick={onMakeDecision}>What should I do ?</button>
+          <button onClick={removeAll}>Remove All</button>
+          {
+            // number.map((num)=>{
+            //   return <p key="num">Number:{num}</p>;
+            // })
+          }
+          <ol>
           {
             app.options.map((option)=>{
               return <li key={option}>{option}</li>;
