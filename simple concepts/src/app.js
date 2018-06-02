@@ -1,3 +1,16 @@
+// create a parent componment which held all the react Component
+class IndecisionApp extends React.Component {
+  render(){
+    return(
+      <div>
+        <Header />
+        <Action />
+        <Options />
+        <AddComponent />
+      </div>
+    );
+  }
+}
 // Create a react Component
 // Here first create the react component
 class Header extends React.Component {
@@ -24,11 +37,24 @@ class Action extends React.Component {
 // Option -> Option Component here
 // AddOption -> AddOption component here.
 
-class Option extends React.Component {
+class Options extends React.Component {
   render(){
     return (
       <div>
-        <p>Option Component here</p>
+        Options Component here.
+        <Option />
+      </div>
+    );
+  }
+}
+
+// Option -> Option component Here
+
+class Option extends React.Component {
+  render(){
+    return(
+      <div>
+        Option Component Here submitted.
       </div>
     );
   }
@@ -37,19 +63,11 @@ class AddComponent extends React.Component {
   render(){
     return (
       <div>
-        <p>Add Component here</p>
+        Add Component here.
       </div>
     );
   }
 }
 
-const jsx =(
-  <div>
-    <Header />
-    <Action />
-    <Option />
-    <AddComponent />
-  </div>
-);
 
-ReactDOM.render(jsx,document.getElementById('app'));
+ReactDOM.render(<IndecisionApp />,document.getElementById('app'));
