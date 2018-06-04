@@ -83,6 +83,11 @@ var Action = function (_React$Component3) {
   }
 
   _createClass(Action, [{
+    key: 'handlePick',
+    value: function handlePick() {
+      alert('Handle Pick');
+    }
+  }, {
     key: 'render',
     value: function render() {
       return React.createElement(
@@ -90,7 +95,7 @@ var Action = function (_React$Component3) {
         null,
         React.createElement(
           'button',
-          null,
+          { onClick: this.handlePick },
           'What should I do?'
         )
       );
@@ -103,6 +108,11 @@ var Action = function (_React$Component3) {
 // Option -> Option Component here
 // AddOption -> AddOption component here.
 
+// add remove all button
+// Setup handleRemoveAll -> alert some message
+// setup onClick to fire
+
+
 var Options = function (_React$Component4) {
   _inherits(Options, _React$Component4);
 
@@ -113,11 +123,21 @@ var Options = function (_React$Component4) {
   }
 
   _createClass(Options, [{
+    key: 'handleRemoveAll',
+    value: function handleRemoveAll() {
+      alert('handleRemoveAll');
+    }
+  }, {
     key: 'render',
     value: function render() {
       return React.createElement(
         'div',
         null,
+        React.createElement(
+          'button',
+          { onClick: this.handleRemoveAll },
+          'Remove All'
+        ),
 
         // this.props.options.map((option)=><p key={option}>{option}</p>)
         this.props.options.map(function (option) {
@@ -131,6 +151,7 @@ var Options = function (_React$Component4) {
 }(React.Component);
 
 // Option -> Option component Here
+
 
 var Option = function (_React$Component5) {
   _inherits(Option, _React$Component5);
@@ -155,6 +176,11 @@ var Option = function (_React$Component5) {
   return Option;
 }(React.Component);
 
+// 1 .setup the form with input and submit button
+// 2. Wire up onSubmit
+// 3. handleAddOption -> fetch the value typed -> if value,then start
+
+
 var AddComponent = function (_React$Component6) {
   _inherits(AddComponent, _React$Component6);
 
@@ -165,12 +191,34 @@ var AddComponent = function (_React$Component6) {
   }
 
   _createClass(AddComponent, [{
+    key: 'handleAddOption',
+    value: function handleAddOption(e) {
+
+      e.preventDefault();
+
+      var option = e.target.elements.option.value.trim(); // trim leading and trilling spaces
+
+      //console.log(option);
+      if (option) {
+        alert(option);
+      }
+    }
+  }, {
     key: 'render',
     value: function render() {
       return React.createElement(
         'div',
         null,
-        'Add Component here.'
+        React.createElement(
+          'form',
+          { onSubmit: this.handleAddOption },
+          React.createElement('input', { type: 'text', placeholder: 'enter text', name: 'option' }),
+          React.createElement(
+            'button',
+            null,
+            'Add Option'
+          )
+        )
       );
     }
   }]);

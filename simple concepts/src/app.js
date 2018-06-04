@@ -28,10 +28,13 @@ class Header extends React.Component {
 }
 
 class Action extends React.Component {
+  handlePick(){
+    alert('Handle Pick');
+  }
   render() {
     return (
       <div>
-        <button>What should I do?</button>
+        <button onClick={this.handlePick}>What should I do?</button>
       </div>
     );
   }
@@ -40,25 +43,29 @@ class Action extends React.Component {
 // Option -> Option Component here
 // AddOption -> AddOption component here.
 
+// add remove all button
+// Setup handleRemoveAll -> alert some message
+// setup onClick to fire
 class Options extends React.Component {
+  handleRemoveAll(){
+    alert('handleRemoveAll');
+  }
   render(){
     return (
-
-
-
           <div>
+            <button onClick={this.handleRemoveAll}>Remove All</button>
             {
               // this.props.options.map((option)=><p key={option}>{option}</p>)
               this.props.options.map((option)=> <Option key={option} optionText={option} />)
+
             }
           </div>
-
-
     );
   }
 }
 
 // Option -> Option component Here
+
 
 class Option extends React.Component {
   render(){
@@ -72,11 +79,32 @@ class Option extends React.Component {
     );
   }
 }
+
+
+// 1 .setup the form with input and submit button
+// 2. Wire up onSubmit
+// 3. handleAddOption -> fetch the value typed -> if value,then start
 class AddComponent extends React.Component {
+  handleAddOption(e) {
+
+    e.preventDefault();
+
+    const option = e.target.elements.option.value.trim(); // trim leading and trilling spaces
+
+    //console.log(option);
+    if(option)
+    {
+      alert(option);
+    }
+
+  }
   render(){
     return (
       <div>
-        Add Component here.
+        <form onSubmit={this.handleAddOption} >
+          <input type="text" placeholder="enter text" name="option" />
+          <button>Add Option</button>
+        </form>
       </div>
     );
   }
