@@ -47,7 +47,13 @@ class Action extends React.Component {
 // Setup handleRemoveAll -> alert some message
 // setup onClick to fire
 class Options extends React.Component {
+  // here we use the constructor to use the bind method bcz of this keyword.
+  constructor (props){
+   super(props);
+   this.handleRemoveAll = this.handleRemoveAll.bind(this);
+  }
   handleRemoveAll(){
+    console.log(this.props.options);
     alert('handleRemoveAll');
   }
   render(){
